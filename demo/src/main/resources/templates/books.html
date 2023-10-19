@@ -7,10 +7,14 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <button data-th:if="${condition}">Click Me</button>
     <div class = "container">
         <div class = "row">
             <h1>My Books</h1>
+        </div>
+        <div class = "row">
+            <div class = "col-lg-3">
+                <a th:href = "@{/books/new}" class = "btn btn-primary btn-sm mb-3">Add Book</a>
+            </div>
         </div>
         <table class = "table table-bordered">
             <thead class = "table-dark">

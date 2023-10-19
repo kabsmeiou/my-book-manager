@@ -13,10 +13,10 @@ public class Book {
     @Column(name = "book_title", nullable = false)
     private String title;
 
-    @Column(name = "author_name", nullable = false)
+    @Column(name = "author_name")
     private String author;
 
-    @Column(name = "book_rating", nullable = false)
+    @Column(name = "book_rating")
     private String rating;
 
     public Book() {
@@ -50,7 +50,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
-        author = author;
+        this.author = author;
     }
 
     public String getRating() {

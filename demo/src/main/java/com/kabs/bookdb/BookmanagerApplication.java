@@ -19,10 +19,7 @@ public class BookmanagerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		Book book = new Book("Cyrano De Bergerac", "Edmond Rostand", "4.5");
-		bookRepository.save(book);
-		Book book2 = new Book("Alice in Wonderland", "Lewis Carroll", "4.5");
-		bookRepository.save(book2);
+
 	}
 
 }
