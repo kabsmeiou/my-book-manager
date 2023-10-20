@@ -3,7 +3,9 @@ package com.kabs.bookdb.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "books")
+@Table(name = "books", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"book_title"})
+})
 public class Book {
 
     @Id

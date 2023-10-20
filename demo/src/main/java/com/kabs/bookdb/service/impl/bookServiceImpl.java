@@ -1,6 +1,7 @@
 package com.kabs.bookdb.service.impl;
 
 import com.kabs.bookdb.entity.Book;
+import com.kabs.bookdb.exceptions.DuplicateBookException;
 import com.kabs.bookdb.repository.bookRepository;
 import com.kabs.bookdb.service.bookService;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,7 @@ public class bookServiceImpl implements bookService {
         return bookRepository.save(book);
     }
 
-
+    public boolean isDuplicate(Book book) {
+        return false;
+    }
 }
