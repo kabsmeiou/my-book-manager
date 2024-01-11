@@ -6,6 +6,8 @@ import com.kabs.bookdb.repository.bookRepository;
 import com.kabs.bookdb.service.bookService;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -40,5 +42,13 @@ public class bookServiceImpl implements bookService {
     @Override
     public Book updateBook(Book book) {
         return bookRepository.save(book);
+    }
+
+    @Override
+    public List<Book> getAllBooksSortedByHighestRating() {
+        List<Book> books = bookRepository.findAll();
+        //sort the list by rating in descending order
+        Collections.sort(books, Comparator.comparing(Book::getRating).reversed());
+        return books;
     }
 }

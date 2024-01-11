@@ -7,41 +7,45 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+    <div class="card text-white bg-secondary mb-3">
+        <h5 class="card-header">My Local Book Manager</h5>
+    </div>
     <div class = "container">
-        <div class = "row">
-            <h1>My Books</h1>
-        </div>
-        <div class = "row">
-            <div class = "col-lg-3">
-                <a th:href = "@{/books/new}" class = "btn btn-primary btn-sm mb-3">Add Book</a>
+        <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class = "row">
+                <div class = "col-lg-3">
+                    <a th:href = "@{/books/new}" class = "btn btn-primary btn-sm mb-3">Add Book</a>
+                </div>
             </div>
+            <table class = "table table-bordered table-hover">
+                <thead class = "table-dark">
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Book Author</th>
+                        <th>Book Rating</th>
+                        <th>Book Review</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each = "book: ${books}" class="text-center">
+                        <td th:text = "${book.title}"></td>
+                        <td th:text = "${book.author}"></td>
+                        <td th:text = "${book.rating} + '/5.0'"></td>
+                        <td th:text = "${book.review}"></td>
+                        <td class="text-center">
+                            <a th:href = "@{/books/edit/{id}(id = ${book.id})}"
+                            class = "btn btn-primary">Update</a>
+                            <a th:href = "@{/books/edit/{id}(id = ${book.id})}"
+                               class = "btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    <tr th:if="${books.isEmpty()}">
+                        <td colspan="5" class="text-center">You have not read any books!</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <table class = "table table-bordered table-hover">
-            <thead class = "table-dark">
-                <tr>
-                    <th>Book Title</th>
-                    <th>Book Author</th>
-                    <th>Book Rating</th>
-                    <th>Book Review</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each = "book: ${books}">
-                    <td th:text = "${book.title}"></td>
-                    <td th:text = "${book.author}"></td>
-                    <td th:text = "${book.rating}"></td>
-                    <td th:text = "${book.review}"></td>
-                    <td>
-                        <a th:href = "@{/books/edit/{id}(id = ${book.id})}"
-                        class = "btn btn-primary">Update</a>
-                    </td>
-                </tr>
-                <tr th:if="${books.isEmpty()}">
-                    <td colspan="5" class="text-center">You have not read any books!</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </body>
 </html>

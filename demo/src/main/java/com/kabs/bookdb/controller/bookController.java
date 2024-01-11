@@ -26,7 +26,7 @@ public class bookController {
 
     @GetMapping("/books") //main page
     public String listBooks(Model model) {
-        model.addAttribute("books", bookService.getAllBooks());
+        model.addAttribute("books", bookService.getAllBooksSortedByHighestRating());
         return "books";
     }
 

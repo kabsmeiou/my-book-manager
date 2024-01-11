@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface bookService {
     List<Book> getAllBooks();
+    List<Book> getAllBooksSortedByHighestRating();
     Book saveBook(Book book);
     Book getBookByID(Long id);
     Book updateBook(Book book);
