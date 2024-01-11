@@ -51,4 +51,9 @@ public class bookServiceImpl implements bookService {
         Collections.sort(books, Comparator.comparing(Book::getRating).reversed());
         return books;
     }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }

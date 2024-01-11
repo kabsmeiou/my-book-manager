@@ -10,5 +10,6 @@ public interface bookService {
     Book saveBook(Book book);
     Book getBookByID(Long id);
     Book updateBook(Book book);
+    void deleteBook(Long id);
     boolean isDuplicate(Book book);
 }
