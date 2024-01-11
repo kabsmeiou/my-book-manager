@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 @Controller
 public class bookController {
@@ -37,13 +39,32 @@ public class bookController {
 
     @PostMapping("/books") //redirecting after adding
     public String saveBook(@ModelAttribute("book") Book book, Model model) {
-        try {
-            bookService.saveBook(book);
-        } catch (DataIntegrityViolationException err) {
-            //handle the exception
-            model.addAttribute("errorMessage", "A book with the same title and author already exists.");
-            return "create_book"; //return to the create_book form and display necessary info
+        List<Book> currentBooks = bookService.getAllBooks();
+        for (Book elem : currentBooks) {
+            if (elem.getTitle().equalsIgnoreCase(book.getTitle()) && elem.getAuthor().equalsIgnoreCase(book.getAuthor())) {
+                model.addAttribute("errorMessage", "A book with the same title and author already exists.");
+                return "create_book"; //return to the create_book form and display necessary info
+            }
         }
+        bookService.saveBook(book);
+        return "redirect:/books";
+    }
+
+    @GetMapping("/books/edit/{id}")
+    public String updateBookForm(@PathVariable Long id, Model model) {
+        model.addAttribute("book", bookService.getBookByID(id));
+        return "update_book";
+    }
+
+    @PostMapping("/books/{id}")
+    public String updateBook (@PathVariable Long id, @ModelAttribute("book") Book book, Model model) {
+        Book existingBook = bookService.getBookByID(id);
+        existingBook.setId(id);
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setReview(book.getReview());
+        existingBook.setRating(book.getRating());
+        existingBook.setTitle(book.getTitle());
+        bookService.updateBook(existingBook);
         return "redirect:/books";
     }
 }

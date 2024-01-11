@@ -7,6 +7,9 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+    <div th:if = "${errorMessage}" class = "alert alert-danger">
+        <p th:text = "${errorMessage}"></p>
+    </div>
     <div class = "container">
         <div class = "row">
             <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
@@ -23,7 +26,6 @@
                                     placeholder = "Enter book title"
                             />
                         </div>
-
                         <div class = "form-group">
                             <label>Book Author</label>
                             <input
@@ -34,18 +36,27 @@
                                     placeholder = "Enter book author"
                             />
                         </div>
-
                         <div class = "form-group">
                             <label>Book rating</label>
                             <input
-                                    type = "text"
+                                    type = "number"
                                     name = "rating"
                                     th:field = "*{rating}"
                                     class = "form-control"
                                     placeholder = "Enter book rating"
+                                    step = "any"
                             />
                         </div>
-
+                        <div class = "form-group">
+                            <label>Book review</label>
+                            <input
+                                    type = "text"
+                                    name = "review"
+                                    th:field = "*{review}"
+                                    class = "form-control"
+                                    placeholder = "Enter book review"
+                            />
+                        </div>
                         <div class="box-footer">
                             <button type="submit" class = "btn btn-primary">
                                 Submit

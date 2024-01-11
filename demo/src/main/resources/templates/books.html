@@ -16,12 +16,13 @@
                 <a th:href = "@{/books/new}" class = "btn btn-primary btn-sm mb-3">Add Book</a>
             </div>
         </div>
-        <table class = "table table-bordered">
+        <table class = "table table-bordered table-hover">
             <thead class = "table-dark">
                 <tr>
                     <th>Book Title</th>
                     <th>Book Author</th>
                     <th>Book Rating</th>
+                    <th>Book Review</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -30,6 +31,14 @@
                     <td th:text = "${book.title}"></td>
                     <td th:text = "${book.author}"></td>
                     <td th:text = "${book.rating}"></td>
+                    <td th:text = "${book.review}"></td>
+                    <td>
+                        <a th:href = "@{/books/edit/{id}(id = ${book.id})}"
+                        class = "btn btn-primary">Update</a>
+                    </td>
+                </tr>
+                <tr th:if="${books.isEmpty()}">
+                    <td colspan="5" class="text-center">You have not read any books!</td>
                 </tr>
             </tbody>
         </table>

@@ -31,4 +31,14 @@ public class bookServiceImpl implements bookService {
     public boolean isDuplicate(Book book) {
         return false;
     }
+
+    @Override
+    public Book getBookByID(Long id) {
+        return bookRepository.findById(id).get();
+    }
+
+    @Override
+    public Book updateBook(Book book) {
+        return bookRepository.save(book);
+    }
 }
